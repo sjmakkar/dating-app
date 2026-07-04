@@ -5,7 +5,7 @@ import { otpStartLimiter, authLimiter } from '../middleware/rateLimit';
 import { requireAuth } from '../middleware/auth';
 import { sendOtp, verifyOtp, verifyGoogle, verifyApple } from '../providers/verify';
 import { findOrCreate, linkIdentity } from '../auth/identityService';
-import { issueSession, rotateRefreshToken, revokeRefreshToken, revokeAllForUser } from '../auth/tokens';
+import { issueSession, rotateRefreshToken, revokeRefreshToken, revokeAllForUser, signAccessToken, verifyAccessToken } from '../auth/tokens';
 
 const router = Router();
 
@@ -98,7 +98,6 @@ router.post('/refresh', asyncHandler(async (req, res) => {
   } catch {
     throw ApiError.unauthorized('Invalid refresh token');
   }
-  const { signAccessToken } = await import('../auth/tokens');
   res.json({
     user_id: rotated.userId,
     accessToken: signAccessToken(rotated.userId),
@@ -118,7 +117,6 @@ router.post('/logout', asyncHandler(async (req, res) => {
     const header = req.header('authorization') ?? '';
     const token = header.split(' ')[1];
     if (token) {
-      const { verifyAccessToken } = await import('../auth/tokens');
       try {
         const payload = verifyAccessToken(token);
         await revokeAllForUser(payload.sub);
