@@ -1,0 +1,56 @@
+# Render Blueprint — deploys the backend API as a free web service.
+# In Render: New → Blueprint → connect this repo. Then set the `sync:false`
+# secrets in the dashboard (they are NOT stored in git).
+services:
+  - type: web
+    name: dating-app-api
+    runtime: node
+    rootDir: backend
+    plan: free
+    region: singapore          # pick the region closest to your users
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # ── Database: use your Supabase SESSION POOLER connection string ──
+      - key: DATABASE_URL
+        sync: false
+      # ── JWT secrets ──
+      - key: JWT_ACCESS_SECRET
+        sync: false
+      - key: JWT_REFRESH_SECRET
+        sync: false
+      # ── Discovery (optional; sensible defaults exist) ──
+      - key: LAUNCH_CITY
+        value: Bengaluru
+      # ── Social auth audiences ──
+      - key: GOOGLE_CLIENT_IDS
+        sync: false
+      - key: APPLE_CLIENT_IDS
+        sync: false
+      # ── SMS OTP (Twilio) ──
+      - key: SMS_PROVIDER
+        value: twilio
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_VERIFY_SERVICE_SID
+        sync: false
+      # ── Managed chat (Stream) ──
+      - key: CHAT_PROVIDER
+        value: stream
+      - key: CHAT_API_KEY
+        sync: false
+      - key: CHAT_API_SECRET
+        sync: false
+      # ── Photo storage (Supabase Storage) ──
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_STORAGE_BUCKET
+        value: photos

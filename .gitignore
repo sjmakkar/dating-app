@@ -1,0 +1,32 @@
+# ── Dependencies ───────────────────────────────
+node_modules/
+**/node_modules/
+
+# ── Secrets / environment (NEVER commit) ────────
+.env
+**/.env
+*.env.local
+# ...but DO keep the example templates:
+!**/.env.example
+
+# Firebase Admin SDK service-account keys (SECRET — upload to Expo, never commit)
+**/*-firebase-adminsdk-*.json
+**/serviceAccount*.json
+**/*service-account*.json
+
+# ── Builds & caches ─────────────────────────────
+dist/
+**/dist/
+.expo/
+**/.expo/
+web-build/
+**/web-build/
+backend/uploads/
+expo-env.d.ts
+**/expo-env.d.ts
+
+# ── Logs & OS junk ──────────────────────────────
+*.log
+**/*.log
+.DS_Store
+**/.DS_Store

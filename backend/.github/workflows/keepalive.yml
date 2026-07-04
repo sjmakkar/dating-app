@@ -1,0 +1,19 @@
+# Free-tier keep-alive (Free-Tier Survival Guide §2).
+# A Supabase project with no activity for ~1 week is auto-paused. This cron
+# pings /health every 3 days so the project never sleeps during quiet periods.
+# Set the repo secret KEEPALIVE_URL to your deployed https://.../health URL.
+name: keepalive
+on:
+  schedule:
+    - cron: '0 6 */3 * *'   # 06:00 UTC every 3 days
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping health endpoint
+        run: |
+          if [ -z "${{ secrets.KEEPALIVE_URL }}" ]; then
+            echo "KEEPALIVE_URL secret not set; skipping."; exit 0
+          fi
+          curl -fsS "${{ secrets.KEEPALIVE_URL }}" && echo "\nkeep-alive ok"
