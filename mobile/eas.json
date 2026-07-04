@@ -17,17 +17,17 @@
         "buildType": "apk"
       },
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://REPLACE-WITH-RENDER-URL.onrender.com",
-        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "REPLACE_WITH_WEB_CLIENT_ID.apps.googleusercontent.com",
-        "EXPO_PUBLIC_STREAM_API_KEY": "REPLACE_WITH_STREAM_KEY"
+        "EXPO_PUBLIC_API_URL": "https://dating-app-li1d.onrender.com",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "268495615387-mriqeglag9udhugdliqd0u705ggk2031.apps.googleusercontent.com",
+        "EXPO_PUBLIC_STREAM_API_KEY": "2d6a4zjdds43"
       }
     },
     "production": {
       "autoIncrement": true,
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://REPLACE-WITH-RENDER-URL.onrender.com",
-        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "REPLACE_WITH_WEB_CLIENT_ID.apps.googleusercontent.com",
-        "EXPO_PUBLIC_STREAM_API_KEY": "REPLACE_WITH_STREAM_KEY"
+        "EXPO_PUBLIC_API_URL": "https://dating-app-li1d.onrender.com",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "268495615387-mriqeglag9udhugdliqd0u705ggk2031.apps.googleusercontent.com",
+        "EXPO_PUBLIC_STREAM_API_KEY": "2d6a4zjdds43"
       }
     }
   },
